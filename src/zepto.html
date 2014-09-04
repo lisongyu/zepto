@@ -3,14 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>学习zepto</title>
+
+        <style>.delete { display: none; }</style>
+
     <script src="zepto.js"></script>
-    <script>
-        $(function(){
-            $('span').css('color','red');
-        })
-    </script>
+    <script src="touch.js"></script>
+
+    <!--<script>-->
+        <!--$(function(){-->
+            <!--$('span').css('color','red');-->
+        <!--})-->
+    <!--</script>-->
 </head>
 <body>
+<ul id=items>
+    <li>List item 1 <span class=delete>DELETE</span></li>
+    <li>List item 2 <span class=delete>DELETE</span></li>
+</ul>
 <span>我们都是好朋友</span>
+<script>
+    // show delete buttons on swipe
+    $('#items li').swipe(function(){
+        $('.delete').hide()
+        $('.delete',
+                this).show()
+    })
+
+    // delete row on tapping delete button
+    $('.delete').tap(function(){
+        $(this).parent('li').remove()
+    })
+</script>
+
 </body>
+
+
+
+
+
 </html>
